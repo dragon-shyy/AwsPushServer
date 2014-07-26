@@ -1,0 +1,128 @@
+<?php
+error_reporting(-1);
+ini_set('display_errors', 'On');
+
+// Load the AWS SDK for PHP
+require __DIR__ . '/aws.phar';
+
+// Create a new Amazon SNS client
+$sns = Aws\Sns\SnsClient::factory(array(
+'default_cache_config' => '/tmp/secure-dir’
+//    'key'    => 'Aaaa',
+//    'secret' => 'Bbbb',
+//    'region' => 'ap-southeast-1'
+));
+$sns->set_region('ap-southeast-1’);
+
+// Get and display the platform applications
+echo("<p><i>List of applications:</i></p>\n");
+$Model1 = $sns->listPlatformApplications();
+foreach ($Model1['PlatformApplications'] as $App)
+{
+  echo("<p>" . $App['PlatformApplicationArn'] . "</p>\n");
+}
+echo("\n");
+
+// Get the Arns of the first 2 applications
+$AppArn = $Model1['PlatformApplications'][0]['PlatformApplicationArn'];
+// $AppArn2 = $Model1['PlatformApplications'][1]['PlatformApplicationArn'];
+
+// Get the application's endpoints
+$Model2 = $sns->listEndpointsByPlatformApplication(array('PlatformApplicationArn' => $AppArn));
+//$Model3 = $sns->listEndpointsByPlatformApplication(array('PlatformApplicationArn' => $AppArn2));
+
+// Display all of the endpoints for the first application
+echo("<p><i>List of endpoints:</i></p>\n");
+foreach ($Model2['Endpoints'] as $Endpoint)
+{
+  $EndpointArn = $Endpoint['EndpointArn'];
+  echo("<p>" . $EndpointArn . "</p>\n");
+}
+
+// Display all of the endpoints for the second application
+/*
+foreach ($Model3['Endpoints'] as $Endpoint)
+{
+  $EndpointArn = $Endpoint['EndpointArn'];
+  echo("<p>" . $EndpointArn . "</p>\n");
+}
+*/
+if($_POST['formSubmit'] == "Submit")
+{
+  $errorMessage = "";
+  
+  if(empty($_POST['formMessage']))
+  {
+    $errorMessage .= "<li>Please enter a message text!</li>";
+  }
+   
+  $varMessage = $_POST['formMessage'];
+
+if(empty($errorMessage)) 
+{
+  // Send a message to each endpoint
+  echo("<p><b>Sending to all endpoints: " . $varMessage . "</b></p>\n");
+  foreach ($Model2['Endpoints'] as $Endpoint)
+  {
+    $EndpointArn = $Endpoint['EndpointArn'];
+
+    try
+    {
+      $sns->publish(array('Message' => $varMessage,
+			 'TargetArn' => $EndpointArn));
+
+      echo("<p>" . $EndpointArn . "<b> - Succeeded!</b></p>\n");
+    }
+    catch (Exception $e)
+    {
+      echo("<p>" . $EndpointArn . " - Failed: " . $e->getMessage() . "!</p>\n");
+    }
+  }
+/*
+  foreach ($Model3['Endpoints'] as $Endpoint)
+  {
+    $EndpointArn = $Endpoint['EndpointArn'];
+
+    try
+    {
+      $sns->publish(array('Message' => $varMessage,
+       'TargetArn' => $EndpointArn));
+
+      echo("<p>" . $EndpointArn . "<b> - Succeeded!</b></p>\n");
+    }
+    catch (Exception $e)
+    {
+      echo("<p>" . $EndpointArn . " - Failed: " . $e->getMessage() . "!</p>\n");
+    }
+  }
+*/
+}
+}
+
+
+
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html>
+<head>
+  <title>Amazon SNS</title>
+</head>
+
+<body>
+  <?php
+    if(!empty($errorMessage)) 
+    {
+      echo("<p>There was an error with your form:</p>\n");
+      echo("<ul>" . $errorMessage . "</ul>\n");
+    } 
+  ?>
+  <form action="index.php" method="post">
+    <p>
+      Notification Message:<br>
+      <input type="text" name="formMessage" maxlength="50" value="<?=$varMessage;?>" />
+    </p>
+    <input type="submit" name="formSubmit" value="Submit" />
+  </form>
+  <img src="bottom.png" alt="AWS Logo">
+</body>
+</html>
