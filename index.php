@@ -14,7 +14,8 @@ $cacheAdapter = new DoctrineCacheAdapter(new FilesystemCache('/tmp/cache'));
 // Create a new Amazon SNS client
 
 $sns = Aws\Sns\SnsClient::factory(array(
-    'credentials.cache' => $cacheAdapter
+    'credentials.cache' => $cacheAdapter,
+    'region' => 'ap-southeast-1'
 ));
 
 // Create a new Amazon SNS client
