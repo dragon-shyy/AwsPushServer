@@ -132,7 +132,7 @@ if(empty($errorMessage))
   <form action="index.php" method="post">
     <p>
       Notification Message:<br>
-      <input type="text" name="formMessage" maxlength="50" value=“This is message from SNS Web Server!” />
+      <input type="text" name="formMessage" maxlength="50" value=“Message from SNS Web!" />
     </p>
     <input type="submit" name="formSubmit" value="Submit" />
   </form>
