@@ -7,10 +7,13 @@ require __DIR__ . '/aws.phar';
 
 // Create a new Amazon SNS client
 $sns = Aws\Sns\SnsClient::factory(array(
-'default_cache_config' => '/tmp/secure-dir’
+//‘default_cache_config' => '/tmp/secure-dir’
 //    'key'    => 'Aaaa',
 //    'secret' => 'Bbbb',
 //    'region' => 'ap-southeast-1'
+      ‘was.config’ => array(
+        'region' => 'ap-southeast-1'
+      )
 ));
 $sns->set_region('ap-southeast-1’);
 
