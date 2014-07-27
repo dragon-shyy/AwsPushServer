@@ -5,17 +5,26 @@ ini_set('display_errors', 'On');
 // Load the AWS SDK for PHP
 require __DIR__ . '/aws.phar';
 
+use Doctrine\Common\Cache\FilesystemCache;
+use Guzzle\Cache\DoctrineCacheAdapter;
+
+// Create a cache adapter that stores data on the filesystem
+$cacheAdapter = new DoctrineCacheAdapter(new FilesystemCache('/tmp/cache'));
+
 // Create a new Amazon SNS client
+
 $sns = Aws\Sns\SnsClient::factory(array(
-//‘default_cache_config' => '/tmp/secure-dir’
-//    'key'    => 'Aaaa',
-//    'secret' => 'Bbbb',
-//    'region' => 'ap-southeast-1'
-      ‘was.config’ => array(
-        'region' => 'ap-southeast-1'
-      )
+    'credentials.cache' => $cacheAdapter
 ));
-$sns->set_region('ap-southeast-1’);
+
+// Create a new Amazon SNS client
+/*
+$sns = Aws\Sns\SnsClient::factory(array(
+    'key'    => 'Aaaa',
+    'secret' => 'Bbbb',
+    'region' => 'ap-southeast-1'
+));
+*/
 
 // Get and display the platform applications
 echo("<p><i>List of applications:</i></p>\n");
