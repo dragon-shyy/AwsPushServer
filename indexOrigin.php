@@ -119,19 +119,6 @@ if(empty($errorMessage))
 <html>
 <head>
   <title>Amazon SNS</title>
- <!-- Flowplayer depends on jquery -->
-<link rel="stylesheet" href="//releases.flowplayer.org/5.4.6/skin/minimalist.css">
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="http://releases.flowplayer.org/5.4.6/flowplayer.min.js"></script>
- 
-<script>
-    // display information about the video type
-    flowplayer(function (api) {
-               api.bind("load", function (e, api, video) {
-                        $("#vtype").text(video.type);
-                        });
-               });
-</script>
 </head>
 
 <body>
@@ -149,11 +136,6 @@ if(empty($errorMessage))
     </p>
     <input type="submit" name="formSubmit" value="Submit" />
   </form>
-     <div class="flowplayer">
-                <video>
-                    <source type="application/x-mpegurl" src="http://d1g5u3al4rzyct.cloudfront.net/livecf/myStream/playlist.m3u8">
-                </video>
-     </div>
   <img src="bottom.png" alt="AWS Logo">
 </body>
 </html>
