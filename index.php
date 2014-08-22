@@ -149,9 +149,9 @@ if(empty($errorMessage))
     </p>
     <input type="submit" name="formSubmit" value="Submit" />
   </form>
-     <div class="flowplayer">
+     <div class="flowplayer" style="width: 480px; height: 320px;" >
                 <video>
-                    <source type="application/x-mpegurl" src="http://d1g5u3al4rzyct.cloudfront.net/livecf/myStream/playlist.m3u8", w:480, h:320>
+                    <source type="application/x-mpegurl" src="http://d1g5u3al4rzyct.cloudfront.net/livecf/myStream/playlist.m3u8">
                 </video>
      </div>
   <img src="bottom.png" alt="AWS Logo">
