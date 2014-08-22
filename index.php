@@ -151,7 +151,7 @@ if(empty($errorMessage))
   </form>
      <div class="flowplayer">
                 <video>
-                    <source type="application/x-mpegurl" src="http://d1g5u3al4rzyct.cloudfront.net/livecf/myStream/playlist.m3u8">
+                    <source type="application/x-mpegurl" src="http://d1g5u3al4rzyct.cloudfront.net/livecf/myStream/playlist.m3u8", w:480, h:320>
                 </video>
      </div>
   <img src="bottom.png" alt="AWS Logo">
