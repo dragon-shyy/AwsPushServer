@@ -149,7 +149,7 @@ if(empty($errorMessage))
     </p>
     <input type="submit" name="formSubmit" value="Submit" />
   </form>
-     <div class="flowplayer" style="width: 480px; height: 320px;" >
+     <div class="flowplayer" style="width: 320px; height: 480px;" >
                 <video>
                     <source type="application/x-mpegurl" src="http://d1g5u3al4rzyct.cloudfront.net/livecf/myStream/playlist.m3u8">
                 </video>
