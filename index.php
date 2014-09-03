@@ -118,7 +118,7 @@ if(empty($errorMessage))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
 <html>
 <head>
-  <title>Amazon SNS</title>
+  <title>Amazon SNS Demo Web</title>
 </head>
 
 <body>
@@ -136,6 +136,6 @@ if(empty($errorMessage))
     </p>
     <input type="submit" name="formSubmit" value="Submit" />
   </form>
-  <img src="bottom.png" alt="AWS Logo">
+  <!-- <img src="bottom.png" alt="AWS Logo"> -->
 </body>
 </html>
