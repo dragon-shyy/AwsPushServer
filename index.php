@@ -118,7 +118,24 @@ if(empty($errorMessage))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
 <html>
 <head>
+<<<<<<< HEAD
   <title>Amazon SNS Demo Web</title>
+=======
+  <title>Amazon SNS</title>
+ <!-- Flowplayer depends on jquery -->
+<link rel="stylesheet" href="//releases.flowplayer.org/5.4.6/skin/minimalist.css">
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://releases.flowplayer.org/5.4.6/flowplayer.min.js"></script>
+ 
+<script>
+    // display information about the video type
+    flowplayer(function (api) {
+               api.bind("load", function (e, api, video) {
+                        $("#vtype").text(video.type);
+                        });
+               });
+</script>
+>>>>>>> b277e6590621486863eaff7a1cb54d66f338f8df
 </head>
 
 <body>
@@ -136,6 +153,11 @@ if(empty($errorMessage))
     </p>
     <input type="submit" name="formSubmit" value="Submit" />
   </form>
-  <!-- <img src="bottom.png" alt="AWS Logo"> -->
+     <div class="flowplayer" style="width: 320px; height: 480px;" >
+                <video>
+                    <source type="application/x-mpegurl" src="http://d1g5u3al4rzyct.cloudfront.net/livecf/myStream/playlist.m3u8">
+                </video>
+     </div>
+  <img src="bottom.png" alt="AWS Logo">
 </body>
 </html>
