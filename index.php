@@ -28,14 +28,15 @@ $sns = Aws\Sns\SnsClient::factory(array(
 */
 
 // Get and display the platform applications
-echo("<p><i>List of applications:</i></p>\n");
 $Model1 = $sns->listPlatformApplications();
+/*
+echo("<p><i>List of applications:</i></p>\n");
 foreach ($Model1['PlatformApplications'] as $App)
 {
   echo("<p>" . $App['PlatformApplicationArn'] . "</p>\n");
 }
 echo("\n");
-
+*/
 // Get the Arns of the first 2 applications
 $AppArn = $Model1['PlatformApplications'][0]['PlatformApplicationArn'];
 // $AppArn2 = $Model1['PlatformApplications'][1]['PlatformApplicationArn'];
@@ -45,11 +46,11 @@ $Model2 = $sns->listEndpointsByPlatformApplication(array('PlatformApplicationArn
 //$Model3 = $sns->listEndpointsByPlatformApplication(array('PlatformApplicationArn' => $AppArn2));
 
 // Display all of the endpoints for the first application
-echo("<p><i>List of endpoints:</i></p>\n");
+//echo("<p><i>List of endpoints:</i></p>\n");
 foreach ($Model2['Endpoints'] as $Endpoint)
 {
   $EndpointArn = $Endpoint['EndpointArn'];
-  echo("<p>" . $EndpointArn . "</p>\n");
+  //echo("<p>" . $EndpointArn . "</p>\n");
 }
 
 // Display all of the endpoints for the second application
@@ -153,7 +154,7 @@ if(empty($errorMessage))
     </p>
     <input type="submit" name="formSubmit" value="Submit" />
   </form>
-     <div class="flowplayer" style="width: 320px; height: 480px;" >
+     <div class="flowplayer" style="width: 320px; height: 568px;" >
                 <video>
                     <source type="application/x-mpegurl" src="http://d1g5u3al4rzyct.cloudfront.net/livecf/myStream/playlist.m3u8">
                 </video>
