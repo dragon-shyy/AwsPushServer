@@ -119,10 +119,7 @@ if(empty($errorMessage))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
 <html>
 <head>
-<<<<<<< HEAD
-  <title>Amazon SNS Demo Web</title>
-=======
-  <title>Amazon SNS</title>
+  <title>Amazon SNS / Live Streaming Demo Web</title>
  <!-- Flowplayer depends on jquery -->
 <link rel="stylesheet" href="//releases.flowplayer.org/5.4.6/skin/minimalist.css">
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -136,7 +133,6 @@ if(empty($errorMessage))
                         });
                });
 </script>
->>>>>>> b277e6590621486863eaff7a1cb54d66f338f8df
 </head>
 
 <body>
